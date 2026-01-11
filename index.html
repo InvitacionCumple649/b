@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Invitación</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="start">Toca para abrir la invitación</div>
+
+<div class="storm"></div>
+<div class="flash"></div>
+
+<div class="scene">
+  <div class="card" id="card">
+
+    <!-- FRENTE -->
+    <div class="face front">
+      <img src="STRA.jpg" class="main-img">
+    </div>
+
+    <!-- REVERSO -->
+    <div class="face back">
+      <img src="biboo.png" class="info-img">
+    </div>
+
+  </div>
+
+  <button id="flipBtn" class="side-btn hidden">Ver info</button>
+  <button id="backBtn" class="side-btn hidden">Volver</button>
+</div>
+
+<audio id="truenoCard" src="sounds/trueno.mp3"></audio>
+<audio id="fondoTrueno" src="sounds/fondotrueno.mp3" loop></audio>
+<audio id="fondoEco" src="sounds/fondoeco.mp3" loop></audio>
+
+
+<script src="script.js"></script>
+</body>
+</html>

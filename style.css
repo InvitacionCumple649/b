@@ -1,0 +1,181 @@
+@font-face {
+  font-family: "ST";
+  src: url("fonts/ST.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BOTÓN INICIAL */
+#start {
+  position: absolute;
+  color: white;
+  font-family: "ST";
+  font-size: 1.7rem;
+  z-index: 100;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* ESCENA */
+.scene {
+  display: none;
+  position: relative;
+  z-index: 50;
+  perspective: 1200px;
+  width: auto;
+  height: 80vh; /* tamaño general reducido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TARJETA */
+.card {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 19.43 / 26.75; /* proporción exacta de la imagen trasera */
+  position: relative;
+  transform-style: preserve-3d;
+  transform: scale(0.8); /* tamaño general reducido */
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.6s ease;
+}
+
+/* APARICIÓN */
+.card.show {
+  opacity: 1;
+}
+
+/* FLIP HACIA IZQUIERDA */
+.card.flipped {
+  transform: scale(0.8) rotateY(-180deg);
+}
+
+/* CARAS */
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FRENTE */
+.front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom; /* ✨ Parte inferior siempre visible */
+}
+
+/* REVERSO */
+.back {
+  background: #1f1f1f;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* IMAGEN REVERSO AJUSTADA */
+.info-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* llena todo el contenedor sin deformarse */
+}
+
+/* BOTONES */
+.side-btn {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "ST";
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.hidden {
+  display: none;
+}
+
+/* TORMENTA */
+.storm {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #3a0000, #000);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* FLASH */
+.flash {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 0, 0, 0.6);
+  opacity: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.flash.active {
+  animation: flash 0.4s ease;
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* RAYO ZIGZAG */
+.lightning {
+  position: fixed;
+  top: -15%;
+  width: 4px;
+  height: 130vh;
+  opacity: 0;
+  z-index: 30;
+  pointer-events: none;
+  transform-origin: top center;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,220,220,1),
+    rgba(255,80,80,0.95),
+    rgba(255,255,255,0)
+  );
+  box-shadow:
+    0 0 15px rgba(255,120,120,1),
+    0 0 30px rgba(255,80,80,0.9);
+}
+
+.lightning.active {
+  animation: lightningFlash 0.15s ease;
+}
+
+@keyframes lightningFlash {
+  0% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
